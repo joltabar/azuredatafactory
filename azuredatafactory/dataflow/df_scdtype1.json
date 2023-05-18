@@ -1,0 +1,132 @@
+{
+	"name": "df_scdtype1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CustomerData",
+						"type": "DatasetReference"
+					},
+					"name": "CustomerSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DimCustomer",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "alterRow1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerAlternateKey as string,",
+				"          City as string,",
+				"          CountryRegionCode as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          BirthDate as string,",
+				"          MaritalStatus as string,",
+				"          Suffix as string,",
+				"          Gender as string,",
+				"          EmailAddress as string,",
+				"          YearlyIncome as string,",
+				"          TotalChildren as string,",
+				"          NumberChildrenAtHome as string,",
+				"          EnglishEducation as string,",
+				"          SpanishEducation as string,",
+				"          FrenchEducation as string,",
+				"          EnglishOccupation as string,",
+				"          SpanishOccupation as string,",
+				"          FrenchOccupation as string,",
+				"          HouseOwnerFlag as string,",
+				"          NumberCarsOwned as string,",
+				"          AddressLine1 as string,",
+				"          AddressLine2 as string,",
+				"          Phone as string,",
+				"          DateFirstPurchase as string,",
+				"          CommuteDistance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CustomerSource",
+				"CustomerSource alterRow(upsertIf(1==1)) ~> alterRow1",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CustomerKey as integer,",
+				"          GeographyKey as integer,",
+				"          CustomerAlternateKey as string,",
+				"          City as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          BirthDate as date,",
+				"          MaritalStatus as string,",
+				"          Suffix as string,",
+				"          Gender as string,",
+				"          EmailAddress as string,",
+				"          YearlyIncome as decimal(19,4),",
+				"          TotalChildren as integer,",
+				"          NumberChildrenAtHome as integer,",
+				"          EnglishEducation as string,",
+				"          SpanishEducation as string,",
+				"          FrenchEducation as string,",
+				"          EnglishOccupation as string,",
+				"          SpanishOccupation as string,",
+				"          FrenchOccupation as string,",
+				"          HouseOwnerFlag as string,",
+				"          NumberCarsOwned as integer,",
+				"          AddressLine1 as string,",
+				"          AddressLine2 as string,",
+				"          Phone as string,",
+				"          DateFirstPurchase as date,",
+				"          CommuteDistance as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['CustomerAlternateKey'],",
+				"     format: 'table',",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          CustomerAlternateKey,",
+				"          FirstName,",
+				"          MiddleName,",
+				"          LastName,",
+				"          BirthDate,",
+				"          MaritalStatus,",
+				"          Suffix,",
+				"          Gender,",
+				"          EmailAddress,",
+				"          YearlyIncome,",
+				"          TotalChildren,",
+				"          NumberChildrenAtHome,",
+				"          EnglishEducation,",
+				"          SpanishEducation,",
+				"          FrenchEducation,",
+				"          EnglishOccupation,",
+				"          SpanishOccupation,",
+				"          FrenchOccupation,",
+				"          HouseOwnerFlag,",
+				"          NumberCarsOwned,",
+				"          AddressLine1,",
+				"          AddressLine2,",
+				"          Phone,",
+				"          DateFirstPurchase,",
+				"          CommuteDistance",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

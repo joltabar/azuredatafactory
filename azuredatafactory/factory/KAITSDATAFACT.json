@@ -1,0 +1,9 @@
+{
+	"name": "KAITSDATAFACT",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cd2a9d06-d014-44b3-a10e-3311b3ec1d07",
+		"tenantId": "c62bc35a-2ed7-49d6-86aa-2cb47dd48dd4"
+	}
+}
